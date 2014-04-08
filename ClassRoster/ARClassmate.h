@@ -8,14 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum {
+    Student = 0,
+    Teacher = 1
+} Role;
+
 @interface ARClassmate : NSObject
 
 @property (nonatomic, strong) NSString *firstName;
 @property (nonatomic, strong) NSString *lastName;
-@property (nonatomic, strong) NSString *role;
-@property (nonatomic, strong) UIImage *photo;
-//@property (nonatomic, strong) NSString *bio;
-//@property (nonatomic, strong) NSString *link1;
-//@property (nonatomic, strong) NSString *link2;
+@property (nonatomic, strong) UIImage *tableViewPhoto;
+@property (assign) Role role;
+@property (nonatomic, strong) NSString *twitterAccount;
+@property (nonatomic, strong) NSString *gitHubAccount;
 
 @end

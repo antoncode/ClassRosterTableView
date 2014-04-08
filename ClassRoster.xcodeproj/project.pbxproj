@@ -33,6 +33,8 @@
 		3A9DCF3A18F3B8A50077ECBE /* Matthew.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3A9DCF3918F3B8A50077ECBE /* Matthew.jpg */; };
 		3A9DCF3C18F3B8B20077ECBE /* Cole.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3A9DCF3B18F3B8B20077ECBE /* Cole.jpg */; };
 		3A9DCF3E18F3B8B90077ECBE /* Christopher.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3A9DCF3D18F3B8B90077ECBE /* Christopher.jpg */; };
+		3A9DCF4418F46B6A0077ECBE /* ARDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9DCF4318F46B6A0077ECBE /* ARDetailViewController.m */; };
+		3A9DCF4618F470B70077ECBE /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A9DCF4518F470B70077ECBE /* AssetsLibrary.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,9 @@
 		3A9DCF3918F3B8A50077ECBE /* Matthew.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Matthew.jpg; sourceTree = "<group>"; };
 		3A9DCF3B18F3B8B20077ECBE /* Cole.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Cole.jpg; sourceTree = "<group>"; };
 		3A9DCF3D18F3B8B90077ECBE /* Christopher.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Christopher.jpg; sourceTree = "<group>"; };
+		3A9DCF4218F46B6A0077ECBE /* ARDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDetailViewController.h; sourceTree = "<group>"; };
+		3A9DCF4318F46B6A0077ECBE /* ARDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARDetailViewController.m; sourceTree = "<group>"; };
+		3A9DCF4518F470B70077ECBE /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A9DCF4618F470B70077ECBE /* AssetsLibrary.framework in Frameworks */,
 				3A9DCE9D18F310880077ECBE /* CoreGraphics.framework in Frameworks */,
 				3A9DCE9F18F310880077ECBE /* UIKit.framework in Frameworks */,
 				3A9DCE9B18F310880077ECBE /* Foundation.framework in Frameworks */,
@@ -127,6 +133,7 @@
 		3A9DCE9918F310880077ECBE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3A9DCF4518F470B70077ECBE /* AssetsLibrary.framework */,
 				3A9DCE9A18F310880077ECBE /* Foundation.framework */,
 				3A9DCE9C18F310880077ECBE /* CoreGraphics.framework */,
 				3A9DCE9E18F310880077ECBE /* UIKit.framework */,
@@ -140,13 +147,9 @@
 			children = (
 				3A9DCEA918F310880077ECBE /* ARAppDelegate.h */,
 				3A9DCEAA18F310880077ECBE /* ARAppDelegate.m */,
-				3A9DCEAC18F310880077ECBE /* Main.storyboard */,
-				3A9DCECF18F312410077ECBE /* ARTableViewController.h */,
-				3A9DCED018F312410077ECBE /* ARTableViewController.m */,
-				3A9DCEDB18F328980077ECBE /* ARClassmateTableViewCell.h */,
-				3A9DCEDC18F328980077ECBE /* ARClassmateTableViewCell.m */,
-				3A9DCED518F31D640077ECBE /* ARClassmate.h */,
-				3A9DCED618F31D640077ECBE /* ARClassmate.m */,
+				3A9DCF3F18F456490077ECBE /* Model */,
+				3A9DCF4018F456520077ECBE /* View */,
+				3A9DCF4118F456590077ECBE /* Controller */,
 				3A9DCEB218F310880077ECBE /* Images.xcassets */,
 				3A9DCEA118F310880077ECBE /* Supporting Files */,
 			);
@@ -190,6 +193,36 @@
 				3A9DCEC218F310880077ECBE /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3A9DCF3F18F456490077ECBE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3A9DCED518F31D640077ECBE /* ARClassmate.h */,
+				3A9DCED618F31D640077ECBE /* ARClassmate.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		3A9DCF4018F456520077ECBE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3A9DCEAC18F310880077ECBE /* Main.storyboard */,
+				3A9DCEDB18F328980077ECBE /* ARClassmateTableViewCell.h */,
+				3A9DCEDC18F328980077ECBE /* ARClassmateTableViewCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		3A9DCF4118F456590077ECBE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3A9DCECF18F312410077ECBE /* ARTableViewController.h */,
+				3A9DCED018F312410077ECBE /* ARTableViewController.m */,
+				3A9DCF4218F46B6A0077ECBE /* ARDetailViewController.h */,
+				3A9DCF4318F46B6A0077ECBE /* ARDetailViewController.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,6 +337,7 @@
 				3A9DCED118F312410077ECBE /* ARTableViewController.m in Sources */,
 				3A9DCEAB18F310880077ECBE /* ARAppDelegate.m in Sources */,
 				3A9DCEDD18F328980077ECBE /* ARClassmateTableViewCell.m in Sources */,
+				3A9DCF4418F46B6A0077ECBE /* ARDetailViewController.m in Sources */,
 				3A9DCED718F31D640077ECBE /* ARClassmate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

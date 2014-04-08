@@ -7,9 +7,9 @@
 //
 
 #import "ARTableViewController.h"
-
 #import "ARClassmate.h"
 #import "ARClassmateTableViewCell.h"
+#import "ARDetailViewController.h"
 
 @interface ARTableViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -24,7 +24,7 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
-    self.navigationItem.title = @"Class Roster";
+    self.navigationItem.title = @"Roster";
     
     [self createClassRoster];
 }
@@ -42,7 +42,6 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
     return 2;
 }
 
@@ -68,18 +67,7 @@
     return cell;
 }
 
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.section == 0) {
-        ARClassmate *selectedClassmate = [self.classmates objectAtIndex:indexPath.row];
-        NSLog(@"%@", selectedClassmate.firstName);
-    } else {
-        ARClassmate *selectedTeacher = [self.teachers objectAtIndex:indexPath.row];
-        NSLog(@"%@", selectedTeacher.firstName);
-    }
-}
+#pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -91,10 +79,12 @@
         
         if (selectedSection == 0) {
             ARClassmate *selectedClassmate = [self.classmates objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
-            destinationViewController.navigationItem.title = [NSString stringWithFormat:@"%@ %@", selectedClassmate.firstName, selectedClassmate.lastName];
+//            destinationViewController.navigationItem.title = [NSString stringWithFormat:@"%@ %@", selectedClassmate.firstName, selectedClassmate.lastName];
+            [(ARDetailViewController *)destinationViewController setSelectedPerson:selectedClassmate];
         } else {
             ARClassmate *selectedTeacher = [self.teachers objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
-            destinationViewController.navigationItem.title = [NSString stringWithFormat:@"%@ %@", selectedTeacher.firstName, selectedTeacher.lastName];
+//            destinationViewController.navigationItem.title = [NSString stringWithFormat:@"%@ %@", selectedTeacher.firstName, selectedTeacher.lastName];
+            [(ARDetailViewController *)destinationViewController setSelectedPerson:selectedTeacher];
         }
     }
 }
@@ -106,96 +96,96 @@
     ARClassmate *michael = [ARClassmate new];
     michael.firstName = @"Michael";
     michael.lastName = @"Babiy";
-    michael.role = @"Student";
+    michael.role = Student;
     
     ARClassmate *cole = [ARClassmate new];
     cole.firstName = @"Cole";
     cole.lastName = @"Bratcher";
-    cole.role = @"Student";
-    cole.photo = [UIImage imageNamed:@"Cole.jpg"];
+    cole.role = Student;
+    cole.tableViewPhoto = [UIImage imageNamed:@"Cole.jpg"];
     
     ARClassmate *john = [ARClassmate new];
     john.firstName = @"John";
     john.lastName = @"Clem";
-    john.role = @"Teacher";
-    john.photo = [UIImage imageNamed:@"john.jpeg"];
+    john.role = Teacher;
+    john.tableViewPhoto = [UIImage imageNamed:@"john.jpeg"];
     
     ARClassmate *christopher = [ARClassmate new];
     christopher.firstName = @"Christopher";
     christopher.lastName = @"Cohan";
-    christopher.role = @"Student";
-    christopher.photo = [UIImage imageNamed:@"Christopher.jpg"];
+    christopher.role = Student;
+    christopher.tableViewPhoto = [UIImage imageNamed:@"Christopher.jpg"];
     
     ARClassmate *dan = [ARClassmate new];
     dan.firstName = @"Dan";
     dan.lastName = @"Fairbanks";
-    dan.role = @"Student";
+    dan.role = Student;
     
     ARClassmate *brad = [ARClassmate new];
     brad.firstName = @"Brad";
     brad.lastName = @"Johnson";
-    brad.role = @"Teacher";
-    brad.photo = [UIImage imageNamed:@"brad.jpg"];
+    brad.role = Teacher;
+    brad.tableViewPhoto = [UIImage imageNamed:@"brad.jpg"];
     
     ARClassmate *lauren = [ARClassmate new];
     lauren.firstName = @"Lauren";
     lauren.lastName = @"Lee";
-    lauren.role = @"Student";
-    lauren.photo = [UIImage imageNamed:@"lauren.jpeg"];
+    lauren.role = Student;
+    lauren.tableViewPhoto = [UIImage imageNamed:@"lauren.jpeg"];
     
     ARClassmate *lindy = [ARClassmate new];
     lindy.firstName = @"Lindy";
     lindy.lastName = @"CF";
-    lindy.role = @"Teacher";
+    lindy.role = Teacher;
     
     ARClassmate *sean = [ARClassmate new];
     sean.firstName = @"Sean";
     sean.lastName = @"McNeil";
-    sean.role = @"Student";
+    sean.role = Student;
     
     ARClassmate *taylor = [ARClassmate new];
     taylor.firstName = @"Taylor";
     taylor.lastName = @"Potter";
-    taylor.role = @"Student";
+    taylor.role = Student;
     
     ARClassmate *brian = [ARClassmate new];
     brian.firstName = @"Brian";
     brian.lastName = @"Radebaugh";
-    brian.role = @"Student";
+    brian.role = Student;
     
     ARClassmate *brook = [ARClassmate new];
     brook.firstName = @"Brook";
     brook.lastName = @"Riggio";
-    brook.role = @"Teacher";
-    brook.photo = [UIImage imageNamed:@"brook.jpeg"];
+    brook.role = Teacher;
+    brook.tableViewPhoto = [UIImage imageNamed:@"brook.jpeg"];
     
     ARClassmate *anton = [ARClassmate new];
     anton.firstName = @"Anton";
     anton.lastName = @"Rivera";
-    anton.role = @"Student";
-    anton.photo = [UIImage imageNamed:@"anton.jpeg"];
+    anton.role = Student;
+    anton.tableViewPhoto = [UIImage imageNamed:@"anton.jpeg"];
     
     ARClassmate *reed = [ARClassmate new];
     reed.firstName = @"Reed";
     reed.lastName = @"Sweeney";
-    reed.role = @"Student";
+    reed.role = Student;
     
     ARClassmate *ryo = [ARClassmate new];
     ryo.firstName = @"Ryo";
     ryo.lastName = @"Tulman";
-    ryo.role = @"Student";
-    ryo.photo = [UIImage imageNamed:@"ryo.jpg"];
+    ryo.role = Student;
+    ryo.tableViewPhoto = [UIImage imageNamed:@"ryo.jpg"];
     
     ARClassmate *matthew = [ARClassmate new];
     matthew.firstName = @"Matthew";
     matthew.lastName = @"Voss";
-    matthew.role = @"Student";
-    matthew.photo = [UIImage imageNamed:@"Matthew.jpg"];
+    matthew.role = Student;
+    matthew.tableViewPhoto = [UIImage imageNamed:@"Matthew.jpg"];
     
     ARClassmate *will = [ARClassmate new];
     will.firstName = @"Will";
     will.lastName = @"CF";
-    will.role = @"Teacher";
+    will.role = Teacher;
     
     self.classmates = [NSMutableArray arrayWithObjects:michael, cole, christopher, dan, lauren, sean, taylor, brian, anton, reed, ryo, matthew, nil];
     self.teachers = [NSMutableArray arrayWithObjects:john, brad, lindy, brook, will, nil];

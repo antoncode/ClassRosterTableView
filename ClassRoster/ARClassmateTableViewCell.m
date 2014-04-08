@@ -12,18 +12,14 @@
 
 - (void)setClassmate:(ARClassmate *)classmate
 {
-    // Correct
     _classmate = classmate;
-//    // Infinite loop - BAD
-//    self.classmate = classmate;
     
-    _classmateTextLabel.text = _classmate.firstName;
-    if (_classmate.photo) {
-        _classmateImageView.image = _classmate.photo;
+    self.classmateTextLabel.text = _classmate.firstName;
+    if (_classmate.tableViewPhoto) {
+        self.classmateImageView.image = _classmate.tableViewPhoto;
     } else {
-        _classmateImageView.image = [UIImage imageNamed:@"default.png"];
+        self.classmateImageView.image = [UIImage imageNamed:@"default.png"];
     }
-    
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
