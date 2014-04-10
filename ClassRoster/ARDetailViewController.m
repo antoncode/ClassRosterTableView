@@ -145,8 +145,18 @@
     [_myPhoto setBackgroundImage:editedImage forState:UIControlStateNormal];
     
     _selectedPerson.tableViewPhoto = _myPhoto.imageView.image;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    // dismiss keyboard when user taps anywhere on the screen
+    [self.view endEditing:YES];
     
-    
+//    for (UIControl *control in self.view.subviews) {
+//        if ([control isKindOfClass:[UITextField class]]) {
+//            [control endEditing:YES];
+//        }
+//    }
 }
 
 @end

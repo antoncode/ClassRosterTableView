@@ -10,6 +10,6 @@
 
 @interface TableDataSourceController : NSObject <UITableViewDataSource>
 
-@property (nonatomic, strong) NSMutableArray *classmates, *teachers;
+@property (nonatomic, strong) NSMutableArray *students, *teachers;
 
 @end

@@ -51,7 +51,7 @@
         UIViewController *destinationViewController = segue.destinationViewController;
         
         if (selectedSection == 0) {
-            ARClassmate *selectedClassmate = [[_myDataSource classmates] objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
+            ARClassmate *selectedClassmate = [[_myDataSource students] objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
             [(ARDetailViewController *)destinationViewController setSelectedPerson:selectedClassmate];
         } else {
             ARClassmate *selectedTeacher = [[_myDataSource teachers] objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
@@ -59,6 +59,8 @@
         }
     }
 }
+
+
 
 @end
 
