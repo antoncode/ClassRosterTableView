@@ -13,7 +13,7 @@ typedef enum {
     Teacher = 1
 } Role;
 
-@interface ARClassmate : NSObject
+@interface ARClassmate : NSObject <NSCoding>
 
 @property (nonatomic, strong) NSString *firstName;
 @property (nonatomic, strong) NSString *lastName;

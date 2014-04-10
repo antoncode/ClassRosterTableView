@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A34027418F5A76000E009A7 /* TableDataSourceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A34027318F5A76000E009A7 /* TableDataSourceController.m */; };
+		3A34027618F5B0AB00E009A7 /* people.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A34027518F5B0AB00E009A7 /* people.plist */; };
 		3A9DCE9B18F310880077ECBE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A9DCE9A18F310880077ECBE /* Foundation.framework */; };
 		3A9DCE9D18F310880077ECBE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A9DCE9C18F310880077ECBE /* CoreGraphics.framework */; };
 		3A9DCE9F18F310880077ECBE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A9DCE9E18F310880077ECBE /* UIKit.framework */; };
@@ -48,6 +50,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A34027218F5A76000E009A7 /* TableDataSourceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableDataSourceController.h; sourceTree = "<group>"; };
+		3A34027318F5A76000E009A7 /* TableDataSourceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableDataSourceController.m; sourceTree = "<group>"; };
+		3A34027518F5B0AB00E009A7 /* people.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = people.plist; sourceTree = "<group>"; };
 		3A9DCE9718F310880077ECBE /* ClassRoster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClassRoster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A9DCE9A18F310880077ECBE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3A9DCE9C18F310880077ECBE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -200,6 +205,9 @@
 			children = (
 				3A9DCED518F31D640077ECBE /* ARClassmate.h */,
 				3A9DCED618F31D640077ECBE /* ARClassmate.m */,
+				3A34027218F5A76000E009A7 /* TableDataSourceController.h */,
+				3A34027318F5A76000E009A7 /* TableDataSourceController.m */,
+				3A34027518F5B0AB00E009A7 /* people.plist */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -305,6 +313,7 @@
 				3A9DCF3A18F3B8A50077ECBE /* Matthew.jpg in Resources */,
 				3A9DCF3E18F3B8B90077ECBE /* Christopher.jpg in Resources */,
 				3A9DCF2718F3565D0077ECBE /* john.jpeg in Resources */,
+				3A34027618F5B0AB00E009A7 /* people.plist in Resources */,
 				3A9DCF3C18F3B8B20077ECBE /* Cole.jpg in Resources */,
 				3A9DCF2B18F357B20077ECBE /* default.png in Resources */,
 				3A9DCEB318F310880077ECBE /* Images.xcassets in Resources */,
@@ -336,6 +345,7 @@
 				3A9DCEA718F310880077ECBE /* main.m in Sources */,
 				3A9DCED118F312410077ECBE /* ARTableViewController.m in Sources */,
 				3A9DCEAB18F310880077ECBE /* ARAppDelegate.m in Sources */,
+				3A34027418F5A76000E009A7 /* TableDataSourceController.m in Sources */,
 				3A9DCEDD18F328980077ECBE /* ARClassmateTableViewCell.m in Sources */,
 				3A9DCF4418F46B6A0077ECBE /* ARDetailViewController.m in Sources */,
 				3A9DCED718F31D640077ECBE /* ARClassmate.m in Sources */,

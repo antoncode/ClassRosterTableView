@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TableDataSourceController.h"
 
 @interface ARTableViewController : UITableViewController
 
-@property (nonatomic, strong) NSMutableArray *classmates;
-@property (nonatomic, strong) NSMutableArray *teachers;
+@property (nonatomic, strong) TableDataSourceController *myDataSource;  // Must be strong
 
 @end
