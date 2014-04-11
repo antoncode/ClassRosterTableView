@@ -45,6 +45,7 @@
             ARClassmate *myStudent = [[ARClassmate alloc] init];
             myStudent.firstName = [student objectForKey:@"FirstName"];
             myStudent.lastName = [student objectForKey:@"LastName"];
+            myStudent.photoFilePath = [student objectForKey:@"PhotoPath"];
             // Add each student to the studentArray
             [studentArray addObject:myStudent];
             
@@ -70,6 +71,7 @@
             ARClassmate *myTeacher = [[ARClassmate alloc] init];
             myTeacher.firstName = [teacher objectForKey:@"FirstName"];
             myTeacher.lastName = [teacher objectForKey:@"LastName"];
+            myTeacher.photoFilePath = [teacher objectForKey:@"PhotoPath"];
             [teacherArray addObject:myTeacher];
             
             [NSKeyedArchiver archiveRootObject:teacherArray toFile:teacherPlistPath];
@@ -136,6 +138,26 @@
     
     NSString *studentPlistPath = [[TableDataSourceController applicationDocumentsDirectory] stringByAppendingPathComponent:@"/student.plist" ];
     [NSKeyedArchiver archiveRootObject:self.students toFile:studentPlistPath];
+}
+
+#pragma mark - Swipe to delete methods
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        if (indexPath.section == 0) {
+            [self.students removeObjectAtIndex:indexPath.row];
+        } else {
+            [self.teachers removeObjectAtIndex:indexPath.row];
+        }
+    }
+    [self saveEditedText];
+    [tableView reloadData];
 }
 
 @end

@@ -14,14 +14,13 @@
 {
     _classmate = classmate;
     
+    self.classmateImageView.layer.cornerRadius = 25;
+    [self.classmateImageView.layer setMasksToBounds:YES];
+    
     self.classmateTextLabel.text = _classmate.firstName;
-    if (_classmate.photo) {
-        self.classmateImageView.layer.cornerRadius = 25;
-        [self.classmateImageView.layer setMasksToBounds:YES];
-        self.classmateImageView.image = _classmate.photo;
-    } else {
-        self.classmateImageView.layer.cornerRadius = 25;
-        [self.classmateImageView.layer setMasksToBounds:YES];
+    self.classmateImageView.image = [UIImage imageWithContentsOfFile:_classmate.photoFilePath];
+
+    if (!self.classmateImageView.image) {
         self.classmateImageView.image = [UIImage imageNamed:@"default.png"];
     }
 }

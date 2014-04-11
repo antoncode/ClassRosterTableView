@@ -8,6 +8,7 @@
 
 #import "ARDetailViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "Social/Social.h"
 
 @interface ARDetailViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate>
 
@@ -49,12 +50,11 @@
 {
     [super viewWillAppear:animated];
     
-
-    if (_selectedPerson.photoFilePath) {
-        NSData *data = [NSData dataWithContentsOfFile:_selectedPerson.photoFilePath];
-        UIImage *image = [UIImage imageWithData:data];
-        [_myPhotoButton setBackgroundImage:image forState:UIControlStateNormal];
-    } else {
+    NSData *data = [NSData dataWithContentsOfFile:_selectedPerson.photoFilePath];
+    UIImage *image = [UIImage imageWithData:data];
+    [_myPhotoButton setBackgroundImage:image forState:UIControlStateNormal];
+    
+    if (!image) {
         [_myPhotoButton setBackgroundImage:[UIImage imageNamed:@"default"] forState:UIControlStateNormal];
     }
     
@@ -118,15 +118,15 @@
     UIImage *editedImage = [info objectForKey:UIImagePickerControllerEditedImage];
     
     [self dismissViewControllerAnimated:YES completion:^{
-        ALAssetsLibrary *assetsLibrary = [ALAssetsLibrary new]; // ALAssetsLibrary - Window in to users photo library.
+//        ALAssetsLibrary *assetsLibrary = [ALAssetsLibrary new]; // ALAssetsLibrary - Window in to users photo library.
         if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusAuthorized) {
-            [assetsLibrary writeImageToSavedPhotosAlbum:editedImage.CGImage // Creates a CGImage from UIImage
-                                            orientation:ALAssetOrientationUp
-                                        completionBlock:^(NSURL *assetURL, NSError *error) {
-                                            if (error) {
-                                                NSLog(@"Error Saving Image: %@", error.localizedDescription);
-                                            }
-                                        }];
+//            [assetsLibrary writeImageToSavedPhotosAlbum:editedImage.CGImage // Creates a CGImage from UIImage
+//                                            orientation:ALAssetOrientationUp
+//                                        completionBlock:^(NSURL *assetURL, NSError *error) {
+//                                            if (error) {
+//                                                NSLog(@"Error Saving Image: %@", error.localizedDescription);
+//                                            }
+//                                        }];
         } else if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusDenied || [ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusRestricted || [ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusNotDetermined) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Cannot Save Photo"
                                                                 message:@"Authorization status not granted"
@@ -144,15 +144,15 @@
     [_myPhotoButton setBackgroundImage:editedImage forState:UIControlStateNormal];
     
     NSString *photoFilePath = [[TableDataSourceController applicationDocumentsDirectory] stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@.jpg", _selectedPerson.firstName]];
+    _selectedPerson.photoFilePath = photoFilePath;
     
     NSData *data = UIImagePNGRepresentation(editedImage);
     [data writeToFile:photoFilePath atomically:YES];
-    
-    _selectedPerson.photoFilePath = photoFilePath;
 }
 
--(BOOL) textFieldShouldReturn:(UITextField *)textField{
-    
+-(BOOL) textFieldShouldReturn:(UITextField *)textField
+{
+    // Return dismisses keyboard
     [textField resignFirstResponder];
     return YES;
 }
@@ -161,12 +161,23 @@
 {
     // dismiss keyboard when user taps anywhere on the screen
     [self.view endEditing:YES];
+}
+
+- (IBAction)sharePost:(id)sender
+{
+    NSString *text = _selectedPerson.firstName;
+    NSData *data = [NSData dataWithContentsOfFile:_selectedPerson.photoFilePath];
+    UIImage *image = [UIImage imageWithData:data];
+    UIActivityViewController *activityController;
     
-//    for (UIControl *control in self.view.subviews) {
-//        if ([control isKindOfClass:[UITextField class]]) {
-//            [control endEditing:YES];
-//        }
-//    }
+    if(image) {
+        activityController = [[UIActivityViewController alloc] initWithActivityItems:@[text, image] applicationActivities:nil];
+        //        [activityController setExcludedActivityTypes:@[UIActivityTypePostToFacebook]];
+    } else {
+        activityController = [[UIActivityViewController alloc] initWithActivityItems:@[text] applicationActivities:nil];
+    }
+    
+    [self presentViewController:activityController animated:YES completion:nil];
 }
 
 @end

@@ -13,4 +13,6 @@
 
 @property (nonatomic, strong) TableDataSourceController *myDataSource;  // Must be strong
 
+- (IBAction)addPerson:(id)sender;
+
 @end

@@ -11,9 +11,9 @@
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="50" sectionHeaderHeight="10" sectionFooterHeight="10" id="y4q-db-KJ8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.80000007149999997" green="0.74901962280000001" blue="0.84705889229999998" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="50" id="1aM-gG-g04" customClass="ARClassmateTableViewCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="50" id="1aM-gG-g04" customClass="ARClassmateTableViewCell">
                                 <rect key="frame" x="0.0" y="119" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1aM-gG-g04" id="FNt-ra-16i">
@@ -28,7 +28,7 @@
                                             <rect key="frame" x="66" y="5" width="201" height="40"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -47,9 +47,16 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Qlc-LO-dRm">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ZSL-W4-ymG">
+                        <barButtonItem key="leftBarButtonItem" title="Sort" id="Iya-zM-OHc">
+                            <color key="tintColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="BAc-yz-ten" kind="push" identifier="addPersonSegue" id="HVk-7X-OLb"/>
+                                <action selector="sortTableView:" destination="g6O-A7-6Ki" id="XsK-x1-3DS"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ZSL-W4-ymG">
+                            <color key="tintColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="addPerson:" destination="g6O-A7-6Ki" id="EPB-t3-Xkn"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -97,7 +104,8 @@
                                             <constraint firstAttribute="height" constant="44" id="9xk-op-0T4"/>
                                             <constraint firstAttribute="width" constant="139" id="d0e-ye-zCY"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="24"/>
+                                        <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Tg-gc-Jvy">
@@ -108,7 +116,8 @@
                                             <constraint firstAttribute="width" constant="139" id="prd-9a-JE5"/>
                                             <constraint firstAttribute="height" constant="44" id="xAu-CX-UGY"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="24"/>
+                                        <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="@twitter" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a6q-8v-eDx">
@@ -119,6 +128,7 @@
                                             <constraint firstAttribute="height" constant="44" id="oWs-Sn-Fx4"/>
                                             <constraint firstAttribute="width" constant="280" id="zwx-xr-epO"/>
                                         </constraints>
+                                        <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -142,6 +152,7 @@
                                             <constraint firstAttribute="width" constant="280" id="PLs-3l-ReC"/>
                                             <constraint firstAttribute="height" constant="44" id="pCp-8V-jPd"/>
                                         </constraints>
+                                        <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -167,7 +178,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" red="0.80000007152557373" green="0.74901962280273438" blue="0.84705889225006104" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="e8h-7J-OfA" firstAttribute="top" secondItem="kSG-7v-Vpb" secondAttribute="bottom" id="Jvv-1Q-tgf"/>
                             <constraint firstItem="kSG-7v-Vpb" firstAttribute="leading" secondItem="WRe-k8-d0E" secondAttribute="leading" id="Qav-u9-4iq"/>
@@ -176,7 +187,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="iMM-cz-bbH">
-                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="Vjb-ff-EQr"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="Vjb-ff-EQr">
+                            <color key="tintColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="sharePost:" destination="BAc-yz-ten" id="1h6-Ee-WaL"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="firstNameTextField" destination="112-bp-dyd" id="PTJ-jc-7QS"/>
@@ -196,7 +212,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="HVk-7X-OLb"/>
-    </inferredMetricsTieBreakers>
 </document>

@@ -11,7 +11,9 @@
 #import "ARClassmateTableViewCell.h"
 #import "ARDetailViewController.h"
 
-@interface ARTableViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface ARTableViewController () <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
+
+@property (nonatomic, strong) UIActionSheet *myActionSheet;
 
 @end
 
@@ -55,23 +57,58 @@
         }
         
         [(ARDetailViewController *)destinationViewController setDataController:_myDataSource];
-    } else if ([segue.identifier isEqualToString:@"addPersonSegue"]) {
-        NSLog(@"Add Person!");
-        
-        
     }
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (section == 0) {
-        
         return @"Students";
     } else {
         return @"Teachers";
     }
 }
 
+#pragma mark - Adding a person
+
+- (IBAction)addPerson:(id)sender
+{
+    self.myActionSheet = [[UIActionSheet alloc] initWithTitle:@"Add Person"
+                                                     delegate:self
+                                            cancelButtonTitle:@"Cancel"
+                                       destructiveButtonTitle:nil
+                                            otherButtonTitles:@"Add Student", @"Add Teacher", nil];
+    
+    [self.myActionSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    ARClassmate *newPerson = [ARClassmate new];
+    
+    if (buttonIndex == 0) {
+        [_myDataSource.students addObject:newPerson];
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForItem:[_myDataSource.students count]-1 inSection:0]
+                                    animated:YES
+                              scrollPosition:UITableViewScrollPositionNone];
+    } else if (buttonIndex == 1) {
+        [_myDataSource.teachers addObject:newPerson];
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForItem:[_myDataSource.teachers count]-1 inSection:1]
+                                    animated:YES
+                              scrollPosition:UITableViewScrollPositionNone];
+    }
+    [self performSegueWithIdentifier:@"showDetailSegue" sender:self];
+}
+
+#pragma mark - Sorting method
+
+- (IBAction)sortTableView:(id)sender
+{
+    [_myDataSource.students sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"firstName" ascending:YES selector:@selector(localizedStandardCompare:)]]];
+    [_myDataSource.teachers sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"firstName" ascending:YES selector:@selector(localizedStandardCompare:)]]];
+
+    [self.tableView reloadData];
+}
 
 
 @end
