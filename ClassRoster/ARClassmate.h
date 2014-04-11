@@ -17,7 +17,8 @@ typedef enum {
 
 @property (nonatomic, strong) NSString *firstName;
 @property (nonatomic, strong) NSString *lastName;
-@property (nonatomic, strong) UIImage *tableViewPhoto;
+@property (nonatomic, strong) UIImage *photo;
+@property (nonatomic, strong) NSString *photoFilePath;
 @property (assign) Role role;
 @property (nonatomic, strong) NSString *twitterAccount;
 @property (nonatomic, strong) NSString *gitHubAccount;

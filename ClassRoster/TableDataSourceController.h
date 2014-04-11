@@ -12,4 +12,12 @@
 
 @property (nonatomic, strong) NSMutableArray *students, *teachers;
 
++ (NSString *)applicationDocumentsDirectory;
++ (BOOL)checkForFileInDocsDirectory:(NSString *)fileName;
+
+
+- (void)setUpData;
+-(void)saveEditedText;
+//+(TableDataSourceController *)sharedData; // For singleton
+
 @end

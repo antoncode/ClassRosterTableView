@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "ARClassmate.h"
+#import "TableDataSourceController.h"
 
 @interface ARDetailViewController : UIViewController
 
 @property (nonatomic, weak) ARClassmate *selectedPerson;
+@property (nonatomic, weak) TableDataSourceController *dataController;
 
 - (IBAction)findpicture:(id)sender;
 

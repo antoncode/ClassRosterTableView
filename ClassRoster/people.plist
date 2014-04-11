@@ -9,42 +9,56 @@
 			<string>John</string>
 			<key>LastName</key>
 			<string>Clem</string>
+			<key>PhotoPath</key>
+			<string></string>
 		</dict>
 		<dict>
 			<key>FirstName</key>
 			<string>Brad</string>
 			<key>LastName</key>
 			<string>Johnson</string>
+			<key>PhotoPath</key>
+			<string></string>
 		</dict>
 		<dict>
 			<key>FirstName</key>
 			<string>Lindy</string>
 			<key>LastName</key>
 			<string>CF</string>
+			<key>PhotoPath</key>
+			<string></string>
 		</dict>
 		<dict>
 			<key>FirstName</key>
 			<string>Brook</string>
 			<key>LastName</key>
 			<string>Riggio</string>
+			<key>PhotoPath</key>
+			<string></string>
 		</dict>
 		<dict>
 			<key>FirstName</key>
 			<string>Carly</string>
 			<key>LastName</key>
 			<string>Slater</string>
+			<key>PhotoPath</key>
+			<string></string>
 		</dict>
 		<dict>
 			<key>FirstName</key>
 			<string>Kristin</string>
 			<key>LastName</key>
 			<string>Smith</string>
+			<key>PhotoPath</key>
+			<string></string>
 		</dict>
 		<dict>
 			<key>FirstName</key>
 			<string>Will</string>
 			<key>LastName</key>
 			<string>CF</string>
+			<key>PhotoPath</key>
+			<string></string>
 		</dict>
 	</array>
 	<key>Students</key>
@@ -54,72 +68,96 @@
 			<string>Michael</string>
 			<key>LastName</key>
 			<string>Babiy</string>
+			<key>PhotoPath</key>
+			<string></string>
 		</dict>
 		<dict>
 			<key>FirstName</key>
 			<string>Cole</string>
 			<key>LastName</key>
 			<string>Bratcher</string>
+			<key>PhotoPath</key>
+			<string></string>
 		</dict>
 		<dict>
 			<key>FirstName</key>
 			<string>Christopher</string>
 			<key>LastName</key>
 			<string>Cohan</string>
+			<key>PhotoPath</key>
+			<string>PhotoPath</string>
 		</dict>
 		<dict>
 			<key>FirstName</key>
 			<string>Dan</string>
 			<key>LastName</key>
 			<string>Fairbanks</string>
+			<key>PhotoPath</key>
+			<string></string>
 		</dict>
 		<dict>
 			<key>FirstName</key>
 			<string>Lauren</string>
 			<key>LastName</key>
 			<string>Lee</string>
+			<key>PhotoPath</key>
+			<string></string>
 		</dict>
 		<dict>
 			<key>FirstName</key>
 			<string>Sean</string>
 			<key>LastName</key>
 			<string>McNeil</string>
+			<key>PhotoPath</key>
+			<string></string>
 		</dict>
 		<dict>
 			<key>FirstName</key>
 			<string>Taylor</string>
 			<key>LastName</key>
 			<string>Potter</string>
+			<key>PhotoPath</key>
+			<string></string>
 		</dict>
 		<dict>
 			<key>FirstName</key>
 			<string>Brian</string>
 			<key>LastName</key>
 			<string>Radebaugh</string>
+			<key>PhotoPath</key>
+			<string></string>
 		</dict>
 		<dict>
 			<key>FirstName</key>
 			<string>Anton</string>
 			<key>LastName</key>
 			<string>Rivera</string>
+			<key>PhotoPath</key>
+			<string></string>
 		</dict>
 		<dict>
 			<key>FirstName</key>
 			<string>Reed</string>
 			<key>LastName</key>
 			<string>Sweeney</string>
+			<key>PhotoPath</key>
+			<string></string>
 		</dict>
 		<dict>
 			<key>FirstName</key>
 			<string>Ryo</string>
 			<key>LastName</key>
 			<string>Tulman</string>
+			<key>PhotoPath</key>
+			<string></string>
 		</dict>
 		<dict>
 			<key>FirstName</key>
 			<string>Matthew</string>
 			<key>LastName</key>
 			<string>Voss</string>
+			<key>PhotoPath</key>
+			<string></string>
 		</dict>
 	</array>
 </dict>

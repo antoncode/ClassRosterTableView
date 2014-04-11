@@ -16,6 +16,7 @@
     if (self) {
         self.firstName = [aDecoder decodeObjectForKey:@"firstName"];
         self.lastName = [aDecoder decodeObjectForKey:@"lastName"];
+        self.photoFilePath = [aDecoder decodeObjectForKey:@"photoFilePath"];
     }
     
     return self;
@@ -25,6 +26,7 @@
 {
     [aCoder encodeObject:self.firstName forKey:@"firstName"];
     [aCoder encodeObject:self.lastName forKey:@"lastName"];
+    [aCoder encodeObject:self.photoFilePath forKey:@"photoFilePath"];
 }
 
 @end

@@ -15,10 +15,10 @@
     _classmate = classmate;
     
     self.classmateTextLabel.text = _classmate.firstName;
-    if (_classmate.tableViewPhoto) {
+    if (_classmate.photo) {
         self.classmateImageView.layer.cornerRadius = 25;
         [self.classmateImageView.layer setMasksToBounds:YES];
-        self.classmateImageView.image = _classmate.tableViewPhoto;
+        self.classmateImageView.image = _classmate.photo;
     } else {
         self.classmateImageView.layer.cornerRadius = 25;
         [self.classmateImageView.layer setMasksToBounds:YES];

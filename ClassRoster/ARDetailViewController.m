@@ -13,10 +13,11 @@
 
 @property (nonatomic, strong) UIActionSheet *myActionSheet;
 
-@property (nonatomic, weak) IBOutlet UIButton *myPhoto;
 @property (weak, nonatomic) IBOutlet UITextField *firstNameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *lastNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *twitterTextField;
 @property (weak, nonatomic) IBOutlet UITextField *gitHubTextField;
+@property (nonatomic, weak) IBOutlet UIButton *myPhotoButton;
 
 @end
 
@@ -25,52 +26,52 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    self.navigationItem.title = [NSString stringWithFormat:@"%@ %@", _selectedPerson.firstName, _selectedPerson.lastName];
     
+    self.twitterTextField.delegate = self;
+    self.gitHubTextField.delegate = self;
+
     if (_selectedPerson.firstName) {
         _firstNameTextField.text = [NSString stringWithFormat:@"%@", _selectedPerson.firstName];
+        self.navigationItem.title = [NSString stringWithFormat:@"%@ %@", _selectedPerson.firstName, _selectedPerson.lastName];
     }
-    [_firstNameTextField addTarget:self
-                          action:@selector(editFirstNameTextField:)
-                forControlEvents:UIControlEventEditingChanged];
-    
+    if (_selectedPerson.lastName) {
+        _lastNameTextField.text = [NSString stringWithFormat:@"%@", _selectedPerson.lastName];
+    }
     if (_selectedPerson.twitterAccount) {
-        _twitterTextField.text = _selectedPerson.twitterAccount;
+        _twitterTextField.text = [NSString stringWithFormat:@"%@", _selectedPerson.twitterAccount];
     }
-    [_twitterTextField addTarget:self
-                          action:@selector(editTwitterTextField:)
-                forControlEvents:UIControlEventEditingChanged];
-    
     if (_selectedPerson.gitHubAccount) {
-        _gitHubTextField.text = _selectedPerson.gitHubAccount;
+        _gitHubTextField.text = [NSString stringWithFormat:@"%@", _selectedPerson.gitHubAccount];
     }
-    [_gitHubTextField addTarget:self
-                          action:@selector(editGitHubTextField:)
-                forControlEvents:UIControlEventEditingChanged];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     
-    _myPhoto.layer.cornerRadius = 116.5;
-    [_myPhoto.layer setMasksToBounds:YES];
-    if (_selectedPerson.tableViewPhoto) {
-        [_myPhoto setBackgroundImage:_selectedPerson.tableViewPhoto forState:UIControlStateNormal];
+
+    if (_selectedPerson.photoFilePath) {
+        NSData *data = [NSData dataWithContentsOfFile:_selectedPerson.photoFilePath];
+        UIImage *image = [UIImage imageWithData:data];
+        [_myPhotoButton setBackgroundImage:image forState:UIControlStateNormal];
     } else {
-        [_myPhoto setBackgroundImage:[UIImage imageNamed:@"default"] forState:UIControlStateNormal];
+        [_myPhotoButton setBackgroundImage:[UIImage imageNamed:@"default"] forState:UIControlStateNormal];
     }
+    
+    _myPhotoButton.layer.cornerRadius = 116.5;
+    [_myPhotoButton.layer setMasksToBounds:YES];
 }
 
-- (void)editFirstNameTextField:(UITextField *)textField
+- (void)viewWillDisappear:(BOOL)animated
 {
-    _selectedPerson.firstName = textField.text;
-}
-
-- (void)editTwitterTextField:(UITextField *)textField
-{
-    _selectedPerson.twitterAccount = textField.text;
-}
-
-- (void)editGitHubTextField:(UITextField *)textField
-{
-    _selectedPerson.gitHubAccount = textField.text;
+    [super viewWillDisappear:animated];
+    
+    _selectedPerson.firstName = _firstNameTextField.text;
+    _selectedPerson.lastName = _lastNameTextField.text;
+    _selectedPerson.twitterAccount = _twitterTextField.text;
+    _selectedPerson.gitHubAccount = _gitHubTextField.text;
+    
+    [self.dataController saveEditedText];
 }
 
 - (IBAction)findpicture:(id)sender
@@ -115,8 +116,6 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage *editedImage = [info objectForKey:UIImagePickerControllerEditedImage];
-//    UIImage *originalImage = [info objectForKey:UIImagePickerControllerOriginalImage];    
-//    _imageView.image = [info objectForKey:UIImagePickerControllerEditedImage];
     
     [self dismissViewControllerAnimated:YES completion:^{
         ALAssetsLibrary *assetsLibrary = [ALAssetsLibrary new]; // ALAssetsLibrary - Window in to users photo library.
@@ -140,11 +139,22 @@
         }
     }];
     
-    _myPhoto.layer.cornerRadius = 116.5;
-    [_myPhoto.layer setMasksToBounds:YES];
-    [_myPhoto setBackgroundImage:editedImage forState:UIControlStateNormal];
+    _myPhotoButton.layer.cornerRadius = 116.5;
+    [_myPhotoButton.layer setMasksToBounds:YES];
+    [_myPhotoButton setBackgroundImage:editedImage forState:UIControlStateNormal];
     
-    _selectedPerson.tableViewPhoto = _myPhoto.imageView.image;
+    NSString *photoFilePath = [[TableDataSourceController applicationDocumentsDirectory] stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@.jpg", _selectedPerson.firstName]];
+    
+    NSData *data = UIImagePNGRepresentation(editedImage);
+    [data writeToFile:photoFilePath atomically:YES];
+    
+    _selectedPerson.photoFilePath = photoFilePath;
+}
+
+-(BOOL) textFieldShouldReturn:(UITextField *)textField{
+    
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

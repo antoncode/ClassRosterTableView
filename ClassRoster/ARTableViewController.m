@@ -21,23 +21,20 @@
 {
     [super viewDidLoad];
     
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
+    _myDataSource = [TableDataSourceController new];
+    [_myDataSource setUpData];
     
-    self.myDataSource = [[TableDataSourceController alloc] init];
-    self.tableView.dataSource = self.myDataSource;
+    self.tableView.dataSource = _myDataSource;
+    self.tableView.delegate = self;
     
     self.navigationItem.title = @"Roster";
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+- (void)viewWillAppear:(BOOL)animated
 {
-    if (section == 0) {
-        
-        return @"Students";
-    } else {
-        return @"Teachers";
-    }
+    [super viewWillAppear:animated];
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    [self.tableView reloadData];
 }
 
 #pragma mark - Navigation
@@ -47,9 +44,8 @@
     NSIndexPath *selectedRowIndexPath = [self.tableView indexPathForSelectedRow];
     NSInteger *selectedSection = (NSInteger *)selectedRowIndexPath.section;
     
+    UIViewController *destinationViewController = segue.destinationViewController;
     if ([segue.identifier isEqualToString:@"showDetailSegue"]) {
-        UIViewController *destinationViewController = segue.destinationViewController;
-        
         if (selectedSection == 0) {
             ARClassmate *selectedClassmate = [[_myDataSource students] objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
             [(ARDetailViewController *)destinationViewController setSelectedPerson:selectedClassmate];
@@ -57,6 +53,22 @@
             ARClassmate *selectedTeacher = [[_myDataSource teachers] objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
             [(ARDetailViewController *)destinationViewController setSelectedPerson:selectedTeacher];
         }
+        
+        [(ARDetailViewController *)destinationViewController setDataController:_myDataSource];
+    } else if ([segue.identifier isEqualToString:@"addPersonSegue"]) {
+        NSLog(@"Add Person!");
+        
+        
+    }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        
+        return @"Students";
+    } else {
+        return @"Teachers";
     }
 }
 

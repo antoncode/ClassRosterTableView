@@ -37,6 +37,7 @@
 		3A9DCF3E18F3B8B90077ECBE /* Christopher.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3A9DCF3D18F3B8B90077ECBE /* Christopher.jpg */; };
 		3A9DCF4418F46B6A0077ECBE /* ARDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9DCF4318F46B6A0077ECBE /* ARDetailViewController.m */; };
 		3A9DCF4618F470B70077ECBE /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A9DCF4518F470B70077ECBE /* AssetsLibrary.framework */; };
+		3AC387E718F7A26800733816 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC387E518F7A26800733816 /* TPKeyboardAvoidingScrollView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,8 @@
 		3A9DCF4218F46B6A0077ECBE /* ARDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDetailViewController.h; sourceTree = "<group>"; };
 		3A9DCF4318F46B6A0077ECBE /* ARDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARDetailViewController.m; sourceTree = "<group>"; };
 		3A9DCF4518F470B70077ECBE /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		3AC387E518F7A26800733816 /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
+		3AC387E618F7A26800733816 /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +153,8 @@
 		3A9DCEA018F310880077ECBE /* ClassRoster */ = {
 			isa = PBXGroup;
 			children = (
+				3AC387E518F7A26800733816 /* TPKeyboardAvoidingScrollView.m */,
+				3AC387E618F7A26800733816 /* TPKeyboardAvoidingScrollView.h */,
 				3A9DCEA918F310880077ECBE /* ARAppDelegate.h */,
 				3A9DCEAA18F310880077ECBE /* ARAppDelegate.m */,
 				3A9DCF3F18F456490077ECBE /* Model */,
@@ -343,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A9DCEA718F310880077ECBE /* main.m in Sources */,
+				3AC387E718F7A26800733816 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				3A9DCED118F312410077ECBE /* ARTableViewController.m in Sources */,
 				3A9DCEAB18F310880077ECBE /* ARAppDelegate.m in Sources */,
 				3A34027418F5A76000E009A7 /* TableDataSourceController.m in Sources */,

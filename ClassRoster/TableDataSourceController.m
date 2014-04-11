@@ -12,76 +12,89 @@
 
 @implementation TableDataSourceController
 
-+ (NSArray *)classmate // Override getter
+//+(TableDataSourceController *)sharedData {
+//    static dispatch_once_t pred;
+//    static TableDataSourceController *shared = nil;
+//    
+//    dispatch_once(&pred, ^{
+//        shared = [[TableDataSourceController alloc] init];
+//        shared.teachers = [[TableDataSourceController teachersFromPlist] mutableCopy];
+//        shared.students = [[TableDataSourceController studentsFromPlist] mutableCopy];
+//    });
+//    return shared;
+//}
+
+- (NSMutableArray *)studentsFromPlist
 {
     NSMutableArray *studentArray = [NSMutableArray new];
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"people" ofType:@"plist"];
-
-    // if file exists
-        // unarchive from plist
-    // else
-        // setup plist
     
-    if ([TableDataSourceController checkForPlistFileInDocs:@"people.plist"]) {  // Initial load
-        return [NSKeyedUnarchiver unarchiveObjectWithFile:plistPath];
+    // Get path to student.plist in docs directory
+    NSString *studentPlistPath = [[TableDataSourceController applicationDocumentsDirectory] stringByAppendingPathComponent:@"student.plist"];
+    // Get path to people.plist in docs directory
+    NSString *studentPathBundle = [[NSBundle mainBundle] pathForResource:@"people" ofType:@"plist"];
+    // Checks if student.plist exists in docs directory
+    if ([TableDataSourceController checkForFileInDocsDirectory:@"/student.plist"]) {
+        // If yes,
+        return [NSKeyedUnarchiver unarchiveObjectWithFile:studentPlistPath];
     } else {
-        // load classmates from .plist
-        NSDictionary *rootDictionary = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
-        for (NSDictionary *students in [rootDictionary objectForKey:@"Students"]) {
-            ARClassmate *myStudent = [[ARClassmate alloc] init]; // FIX!!!
+        // Create rootDictionary with contents of people.plist
+        NSDictionary *rootDictionary = [[NSDictionary alloc] initWithContentsOfFile:studentPathBundle];
+        
+        // Parse through rootDictionary for every student
+        for (NSDictionary *student in [rootDictionary objectForKey:@"Students"]) {
+            ARClassmate *myStudent = [[ARClassmate alloc] init];
+            myStudent.firstName = [student objectForKey:@"FirstName"];
+            myStudent.lastName = [student objectForKey:@"LastName"];
+            // Add each student to the studentArray
             [studentArray addObject:myStudent];
+            
+            // archive studentArray to plist in doc directory
+            [NSKeyedArchiver archiveRootObject:studentArray toFile:studentPlistPath];
         }
     }
     
-    [NSKeyedArchiver archiveRootObject:studentArray toFile:plistPath];
-    
-    return [TableDataSourceController classmate];
+    return [self studentsFromPlist];
 }
 
-+(NSString *)applicationDocumentsDirectory
+- (NSMutableArray *)teachersFromPlist
+{
+    NSMutableArray *teacherArray = [NSMutableArray new];
+    
+    NSString *teacherPlistPath = [[TableDataSourceController applicationDocumentsDirectory] stringByAppendingPathComponent:@"teacher.plist"];
+    NSString *teacherPathBundle = [[NSBundle mainBundle] pathForResource:@"people" ofType:@"plist"];
+    if ([TableDataSourceController checkForFileInDocsDirectory:@"/teacher.plist"]) {
+        return [NSKeyedUnarchiver unarchiveObjectWithFile:teacherPlistPath];
+    } else {
+        NSDictionary *rootDictionary = [[NSDictionary alloc] initWithContentsOfFile:teacherPathBundle];
+        for (NSDictionary *teacher in [rootDictionary objectForKey:@"Teachers"]) {
+            ARClassmate *myTeacher = [[ARClassmate alloc] init];
+            myTeacher.firstName = [teacher objectForKey:@"FirstName"];
+            myTeacher.lastName = [teacher objectForKey:@"LastName"];
+            [teacherArray addObject:myTeacher];
+            
+            [NSKeyedArchiver archiveRootObject:teacherArray toFile:teacherPlistPath];
+        }
+    }
+    
+    return [self teachersFromPlist];
+}
+
++ (NSString *)applicationDocumentsDirectory
 {
     // Gives a path to the directory
     return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
 }
 
-+ (BOOL)checkForPlistFileInDocs:(NSString *)fileName
++ (BOOL)checkForFileInDocsDirectory:(NSString *)fileName
 {
-    NSError *error;
-    
     NSFileManager *myManager = [NSFileManager defaultManager];
     
-    NSString *pathForPlistInBundle = [[NSBundle mainBundle] pathForResource:@"people" ofType:@"plist"];
-    NSString *pathForPlistInDocs = [[TableDataSourceController applicationDocumentsDirectory] stringByAppendingString:fileName];
-    [myManager copyItemAtPath:pathForPlistInBundle toPath:pathForPlistInDocs error:&error];
-    
-//    if ([myManager fileExistsAtPath:pathForPlistInBundle]) {
-//        return YES;
-//    }
+    // Get path to filename in docs directory
+    NSString *pathForFileInDocs = [[TableDataSourceController applicationDocumentsDirectory] stringByAppendingString:fileName];
 
-    return [myManager fileExistsAtPath:pathForPlistInDocs];
-    
-//    [myManager copyItemAtPath:pathForPlistInBundle toPath:pathForPlistInDocs error:&error];
-//    if (error) {
-//        NSLog(@"error: %@", error.localizedDescription);
-//        NSlog(@"more error: %@", error.debugDescription);
-//    } else {
-//        NSLog(@" success!");
-//        return YES;
-//    }
-//    
-//    return NO;
+    // Return yes if filename is in docs directory
+    return [myManager fileExistsAtPath:pathForFileInDocs];
 }
-
-//- (id)init
-//{
-//    self = [super init];
-//    
-//    if (self) {
-//        [self createClassRoster];
-//    }
-//    
-//    return self;
-//}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -110,106 +123,39 @@
     return cell;
 }
 
-#pragma mark - Helper methods
-//
-//- (void)createClassRoster
-//{
-//    ARClassmate *michael = [ARClassmate new];
-//    michael.firstName = @"Michael";
-//    michael.lastName = @"Babiy";
-//    michael.role = Student;
-//    
-//    ARClassmate *cole = [ARClassmate new];
-//    cole.firstName = @"Cole";
-//    cole.lastName = @"Bratcher";
-//    cole.role = Student;
-//    cole.tableViewPhoto = [UIImage imageNamed:@"Cole.jpg"];
-//    
-//    ARClassmate *john = [ARClassmate new];
-//    john.firstName = @"John";
-//    john.lastName = @"Clem";
-//    john.role = Teacher;
-//    john.tableViewPhoto = [UIImage imageNamed:@"john.jpeg"];
-//    
-//    ARClassmate *christopher = [ARClassmate new];
-//    christopher.firstName = @"Christopher";
-//    christopher.lastName = @"Cohan";
-//    christopher.role = Student;
-//    christopher.tableViewPhoto = [UIImage imageNamed:@"Christopher.jpg"];
-//    
-//    ARClassmate *dan = [ARClassmate new];
-//    dan.firstName = @"Dan";
-//    dan.lastName = @"Fairbanks";
-//    dan.role = Student;
-//    
-//    ARClassmate *brad = [ARClassmate new];
-//    brad.firstName = @"Brad";
-//    brad.lastName = @"Johnson";
-//    brad.role = Teacher;
-//    brad.tableViewPhoto = [UIImage imageNamed:@"brad.jpg"];
-//    
-//    ARClassmate *lauren = [ARClassmate new];
-//    lauren.firstName = @"Lauren";
-//    lauren.lastName = @"Lee";
-//    lauren.role = Student;
-//    lauren.tableViewPhoto = [UIImage imageNamed:@"lauren.jpeg"];
-//    
-//    ARClassmate *lindy = [ARClassmate new];
-//    lindy.firstName = @"Lindy";
-//    lindy.lastName = @"CF";
-//    lindy.role = Teacher;
-//    
-//    ARClassmate *sean = [ARClassmate new];
-//    sean.firstName = @"Sean";
-//    sean.lastName = @"McNeil";
-//    sean.role = Student;
-//    
-//    ARClassmate *taylor = [ARClassmate new];
-//    taylor.firstName = @"Taylor";
-//    taylor.lastName = @"Potter";
-//    taylor.role = Student;
-//    
-//    ARClassmate *brian = [ARClassmate new];
-//    brian.firstName = @"Brian";
-//    brian.lastName = @"Radebaugh";
-//    brian.role = Student;
-//    
-//    ARClassmate *brook = [ARClassmate new];
-//    brook.firstName = @"Brook";
-//    brook.lastName = @"Riggio";
-//    brook.role = Teacher;
-//    brook.tableViewPhoto = [UIImage imageNamed:@"brook.jpeg"];
-//    
-//    ARClassmate *anton = [ARClassmate new];
-//    anton.firstName = @"Anton";
-//    anton.lastName = @"Rivera";
-//    anton.role = Student;
-//    anton.tableViewPhoto = [UIImage imageNamed:@"anton.jpeg"];
-//    
-//    ARClassmate *reed = [ARClassmate new];
-//    reed.firstName = @"Reed";
-//    reed.lastName = @"Sweeney";
-//    reed.role = Student;
-//    
-//    ARClassmate *ryo = [ARClassmate new];
-//    ryo.firstName = @"Ryo";
-//    ryo.lastName = @"Tulman";
-//    ryo.role = Student;
-//    ryo.tableViewPhoto = [UIImage imageNamed:@"ryo.jpg"];
-//    
-//    ARClassmate *matthew = [ARClassmate new];
-//    matthew.firstName = @"Matthew";
-//    matthew.lastName = @"Voss";
-//    matthew.role = Student;
-//    matthew.tableViewPhoto = [UIImage imageNamed:@"Matthew.jpg"];
-//    
-//    ARClassmate *will = [ARClassmate new];
-//    will.firstName = @"Will";
-//    will.lastName = @"CF";
-//    will.role = Teacher;
-//    
-//    self.students = [NSMutableArray arrayWithObjects:michael, cole, christopher, dan, lauren, sean, taylor, brian, anton, reed, ryo, matthew, nil];
-//    self.teachers = [NSMutableArray arrayWithObjects:john, brad, lindy, brook, will, nil];
-//}
+- (void)setUpData;
+{
+    self.students = [self studentsFromPlist];
+    self.teachers = [self teachersFromPlist];
+}
+
+-(void)saveEditedText
+{
+    NSString *teacherPlistPath = [[TableDataSourceController applicationDocumentsDirectory] stringByAppendingPathComponent:@"/teacher.plist" ];
+    [NSKeyedArchiver archiveRootObject:self.teachers toFile:teacherPlistPath];
+    
+    NSString *studentPlistPath = [[TableDataSourceController applicationDocumentsDirectory] stringByAppendingPathComponent:@"/student.plist" ];
+    [NSKeyedArchiver archiveRootObject:self.students toFile:studentPlistPath];
+}
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
