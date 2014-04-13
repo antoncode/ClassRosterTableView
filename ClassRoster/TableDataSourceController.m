@@ -160,6 +160,17 @@
     [tableView reloadData];
 }
 
+#pragma mark - Section Header method
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return @"Students";
+    } else {
+        return @"Teachers";
+    }
+}
+
 @end
 
 

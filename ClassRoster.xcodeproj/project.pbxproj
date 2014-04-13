@@ -30,6 +30,9 @@
 		3AC387E718F7A26800733816 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC387E518F7A26800733816 /* TPKeyboardAvoidingScrollView.m */; };
 		3AF2553C18F84EB80002D49D /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF2553B18F84EB80002D49D /* Social.framework */; };
 		3AF2553E18F85BA30002D49D /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AF2553D18F85BA30002D49D /* default.png */; };
+		3AF2554218F8BB0E0002D49D /* r.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AF2553F18F8BB0E0002D49D /* r.png */; };
+		3AF2554318F8BB0E0002D49D /* g.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AF2554018F8BB0E0002D49D /* g.png */; };
+		3AF2554418F8BB0E0002D49D /* b.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AF2554118F8BB0E0002D49D /* b.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +79,9 @@
 		3AC387E618F7A26800733816 /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
 		3AF2553B18F84EB80002D49D /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		3AF2553D18F85BA30002D49D /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
+		3AF2553F18F8BB0E0002D49D /* r.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = r.png; sourceTree = "<group>"; };
+		3AF2554018F8BB0E0002D49D /* g.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = g.png; sourceTree = "<group>"; };
+		3AF2554118F8BB0E0002D49D /* b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = b.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +161,9 @@
 		3A9DCEA118F310880077ECBE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3AF2553F18F8BB0E0002D49D /* r.png */,
+				3AF2554018F8BB0E0002D49D /* g.png */,
+				3AF2554118F8BB0E0002D49D /* b.png */,
 				3AF2553D18F85BA30002D49D /* default.png */,
 				3A9DCEA218F310880077ECBE /* ClassRoster-Info.plist */,
 				3A9DCEA318F310880077ECBE /* InfoPlist.strings */,
@@ -292,6 +301,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AF2554318F8BB0E0002D49D /* g.png in Resources */,
+				3AF2554218F8BB0E0002D49D /* r.png in Resources */,
+				3AF2554418F8BB0E0002D49D /* b.png in Resources */,
 				3A34027618F5B0AB00E009A7 /* people.plist in Resources */,
 				3A9DCEB318F310880077ECBE /* Images.xcassets in Resources */,
 				3A9DCEA518F310880077ECBE /* InfoPlist.strings in Resources */,

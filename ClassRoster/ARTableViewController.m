@@ -60,15 +60,6 @@
     }
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    if (section == 0) {
-        return @"Students";
-    } else {
-        return @"Teachers";
-    }
-}
-
 #pragma mark - Adding a person
 
 - (IBAction)addPerson:(id)sender

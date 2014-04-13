@@ -22,5 +22,8 @@ typedef enum {
 @property (assign) Role role;
 @property (nonatomic, strong) NSString *twitterAccount;
 @property (nonatomic, strong) NSString *gitHubAccount;
+@property (nonatomic) float favoriteRed;
+@property (nonatomic) float favoriteGreen;
+@property (nonatomic) float favoriteBlue;
 
 @end

@@ -48,13 +48,13 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="Qlc-LO-dRm">
                         <barButtonItem key="leftBarButtonItem" title="Sort" id="Iya-zM-OHc">
-                            <color key="tintColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="sortTableView:" destination="g6O-A7-6Ki" id="XsK-x1-3DS"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ZSL-W4-ymG">
-                            <color key="tintColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="addPerson:" destination="g6O-A7-6Ki" id="EPB-t3-Xkn"/>
                             </connections>
@@ -156,6 +156,30 @@
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="1.0000000000000001e-05" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="JaB-vs-q3j">
+                                        <rect key="frame" x="18" y="485" width="118" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="rDidChange:" destination="BAc-yz-ten" eventType="valueChanged" id="dqr-Ug-IYH"/>
+                                        </connections>
+                                    </slider>
+                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="1.0000000000000001e-05" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="oRr-Gh-PPw">
+                                        <rect key="frame" x="101" y="518" width="118" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="gDidChange:" destination="BAc-yz-ten" eventType="valueChanged" id="nYX-0e-fc4"/>
+                                        </connections>
+                                    </slider>
+                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="1.0000000000000001e-05" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="hBK-bW-vtb">
+                                        <rect key="frame" x="184" y="484" width="118" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="bDidChange:" destination="BAc-yz-ten" eventType="valueChanged" id="XLP-gJ-4Bi"/>
+                                        </connections>
+                                    </slider>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="8Tg-gc-Jvy" firstAttribute="leading" secondItem="112-bp-dyd" secondAttribute="trailing" constant="2" id="EEQ-MD-SaM"/>
@@ -178,7 +202,6 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="e8h-7J-OfA" firstAttribute="top" secondItem="kSG-7v-Vpb" secondAttribute="bottom" id="Jvv-1Q-tgf"/>
                             <constraint firstItem="kSG-7v-Vpb" firstAttribute="leading" secondItem="WRe-k8-d0E" secondAttribute="leading" id="Qav-u9-4iq"/>
@@ -188,7 +211,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="iMM-cz-bbH">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="Vjb-ff-EQr">
-                            <color key="tintColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="sharePost:" destination="BAc-yz-ten" id="1h6-Ee-WaL"/>
                             </connections>

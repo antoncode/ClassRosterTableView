@@ -20,6 +20,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *gitHubTextField;
 @property (nonatomic, weak) IBOutlet UIButton *myPhotoButton;
 
+@property (nonatomic, strong) UISlider *sliderRed;
+@property (nonatomic, strong) UISlider *sliderGreen;
+@property (nonatomic, strong) UISlider *sliderBlue;
+
 @end
 
 @implementation ARDetailViewController
@@ -31,6 +35,18 @@
     self.twitterTextField.delegate = self;
     self.gitHubTextField.delegate = self;
 
+    _sliderRed = [UISlider new];
+    _sliderGreen = [UISlider new];
+    _sliderBlue = [UISlider new];
+
+    // Gets rid of extra blank space on top of view
+    self.automaticallyAdjustsScrollViewInsets = NO;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
     if (_selectedPerson.firstName) {
         _firstNameTextField.text = [NSString stringWithFormat:@"%@", _selectedPerson.firstName];
         self.navigationItem.title = [NSString stringWithFormat:@"%@ %@", _selectedPerson.firstName, _selectedPerson.lastName];
@@ -38,17 +54,13 @@
     if (_selectedPerson.lastName) {
         _lastNameTextField.text = [NSString stringWithFormat:@"%@", _selectedPerson.lastName];
     }
+    
     if (_selectedPerson.twitterAccount) {
         _twitterTextField.text = [NSString stringWithFormat:@"%@", _selectedPerson.twitterAccount];
     }
     if (_selectedPerson.gitHubAccount) {
         _gitHubTextField.text = [NSString stringWithFormat:@"%@", _selectedPerson.gitHubAccount];
     }
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
     
     NSData *data = [NSData dataWithContentsOfFile:_selectedPerson.photoFilePath];
     UIImage *image = [UIImage imageWithData:data];
@@ -57,9 +69,29 @@
     if (!image) {
         [_myPhotoButton setBackgroundImage:[UIImage imageNamed:@"default"] forState:UIControlStateNormal];
     }
-    
     _myPhotoButton.layer.cornerRadius = 116.5;
     [_myPhotoButton.layer setMasksToBounds:YES];
+    
+    if (_selectedPerson.favoriteRed) {
+        [_sliderRed setValue:_selectedPerson.favoriteRed];
+    } else {
+        [_sliderRed setValue:0.5];
+        _selectedPerson.favoriteRed = 0.5;
+    }
+    if (_selectedPerson.favoriteGreen) {
+        [_sliderGreen setValue:_selectedPerson.favoriteGreen];
+    } else {
+        [_sliderGreen setValue:0.5];
+        _selectedPerson.favoriteGreen = 0.5;
+    }
+    if (_selectedPerson.favoriteBlue) {
+        [_sliderBlue setValue:_selectedPerson.favoriteBlue];
+    } else {
+        [_sliderBlue setValue:0.5];
+        _selectedPerson.favoriteBlue = 0.5;
+    }
+    
+    self.view.backgroundColor = [UIColor colorWithRed:_sliderRed.value green:_sliderGreen.value blue:_sliderBlue.value alpha:1];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -68,10 +100,14 @@
     
     _selectedPerson.firstName = _firstNameTextField.text;
     _selectedPerson.lastName = _lastNameTextField.text;
-    _selectedPerson.twitterAccount = _twitterTextField.text;
-    _selectedPerson.gitHubAccount = _gitHubTextField.text;
     
     [self.dataController saveEditedText];
+    
+    _selectedPerson.twitterAccount = _twitterTextField.text;
+    _selectedPerson.gitHubAccount = _gitHubTextField.text;
+    _selectedPerson.favoriteRed = _sliderRed.value;
+    _selectedPerson.favoriteGreen = _sliderGreen.value;
+    _selectedPerson.favoriteBlue = _sliderBlue.value;
 }
 
 - (IBAction)findpicture:(id)sender
@@ -179,6 +215,34 @@
     
     [self presentViewController:activityController animated:YES completion:nil];
 }
+
+#pragma mark - Background Color methods
+
+- (IBAction)rDidChange:(id)sender
+{
+    _sliderRed = (UISlider *)sender;
+    
+    UIColor *backgroundColor = [UIColor colorWithRed:_sliderRed.value green:_sliderGreen.value blue:_sliderBlue.value alpha:1];
+    self.view.backgroundColor = backgroundColor;
+}
+
+- (IBAction)gDidChange:(id)sender
+{
+    _sliderGreen = (UISlider *)sender;
+    
+    UIColor *backgroundColor = [UIColor colorWithRed:_sliderRed.value green:_sliderGreen.value blue:_sliderBlue.value alpha:1];
+    self.view.backgroundColor = backgroundColor;
+}
+
+- (IBAction)bDidChange:(id)sender {
+    _sliderBlue = (UISlider *)sender;
+    
+    UIColor *backgroundColor = [UIColor colorWithRed:_sliderRed.value green:_sliderGreen.value blue:_sliderBlue.value alpha:1];
+    self.view.backgroundColor = backgroundColor;
+    
+    
+}
+
 
 @end
 
